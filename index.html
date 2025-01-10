@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cape Rhino Tours</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+        header {
+            background: url('https://i.ibb.co/DCZ4Psn/White-Rhinoceros-Mum-Calf.jpg') no-repeat center center/cover;
+            color: white;
+            height: 550px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+            z-index: 1;
+        }
+        header h1 {
+            position: relative;
+            z-index: 2;
+            font-size: 3rem;
+            margin: 0;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+        header p {
+            position: relative;
+            z-index: 2;
+            font-size: 1.5rem;
+            margin-top: 10px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+/* Larger mobile devices (e.g., iPhone Plus, phablets) */
+@media (max-width: 768px) {
+    header {
+        height: 620px; /* Adjust height for slightly larger mobile screens */
+        background: url('https://i.ibb.co/51bcjxJ/download.jpg') no-repeat center center/cover; /* New background for mobile */
+    }
+    header h1 {
+        font-size: 2.2rem; /* Slightly larger font size for larger mobiles */
+    }
+    header p {
+        font-size: 1.2rem; /* Slightly larger font size for larger mobiles */
+    }
+}
+/* General Navbar Styling */
+nav {
+    background: linear-gradient(to right, #4CAF50, #3E8E41); /* Subtle gradient */
+    padding: 10px 20px; /* Add some padding to give space around the navbar */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    position: sticky; /* Keeps the navbar visible when scrolling */
+    top: 0;
+    z-index: 10;
+    display: flex; /* Flexbox for alignment */
+    justify-content: space-between; /* Space between logo, burger, and nav links */
+    align-items: center; /* Center items vertically */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+/* Logo Styling */
+.logo {
+    display: flex;
+    align-items: center; /* Center the business name vertically */
+}
+
+.business-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Navigation Links */
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+nav a:hover {
+    color: #4CAF50; /* Invert the text color */
+    background-color: white; /* Highlight with white background */
+}
+
+/* Burger Icon Styling */
+.burger {
+    display: none; /* Hide by default */
+    flex-direction: column;
+    cursor: pointer;
+    justify-content: space-around;
+    align-items: center;
+    width: 30px;
+    height: 25px;
+    z-index: 20;
+    margin-left: 20px; /* Space from the edge */
+}
+
+.burger .bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition for the bars */
+}
+
+.burger.open .bar1 {
+    transform: rotate(45deg) translate(5px, 5px); /* Rotate the first bar to form an X */
+}
+
+.burger.open .bar2 {
+    opacity: 0; /* Hide the middle bar */
+}
+
+.burger.open .bar3 {
+    transform: rotate(-45deg) translate(5px, -5px); /* Rotate the third bar to form an X */
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: row; /* Keep logo and burger icon inline */
+        align-items: center; /* Align them in the center vertically */
+        justify-content: space-between; /* Space between the business name and the burger icon */
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start; /* Keep logo on the left */
+    }
+
+    .business-name {
+        font-size: 1.2rem; /* Adjust the business name size for mobile */
+    }
+
+    .burger {
+        display: flex; /* Show burger icon on small screens */
+    }
+
+    .nav-links {
+        display: none; /* Hide links by default */
+        flex-direction: column; /* Stack links vertically */
+        width: 100%; /* Make links take full width */
+        text-align: left; /* Align text to the left */
+        background-color: #4CAF50; /* Match background with navbar */
+        position: absolute; /* Position links over the screen */
+        top: 60px; /* Below the navbar */
+        left: 0;
+        padding: 20px 0;
+        z-index: 10;
+        opacity: 0;
+        transition: opacity 0.3s ease; /* Smooth transition for opacity */
+    }
+
+    .nav-links.open {
+        display: flex; /* Show links when burger icon is clicked */
+        opacity: 1;
+    }
+
+    .nav-links a {
+        margin: 10px 0;
+        padding: 10px 20px;
+        transition: padding 0.3s ease; /* Smooth padding transition */
+    }
+
+    .nav-links a:hover {
+        padding-left: 25px; /* Add padding on hover for better effect */
+    }
+}
+        .section {
+            padding: 20px;
+            margin: 0 auto;
+        }
+        .section h2 {
+            color: #4CAF50;
+        }
+
+        #services {
+    position: relative;
+    background: url('https://i.ibb.co/TrT9mnN/Table-Mountain-mountain-South-Africa.jpg') no-repeat center center/cover; /* Replace with your image URL */
+    padding: 50px 20px;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+#services::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: 1; /* Make sure overlay is under the content */
+}
+
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 30px;
+    justify-items: center;
+    padding: 30px 20px;
+    z-index: 2; /* Ensure the container is above the overlay */
+    position: relative; /* Allow the content to be above the overlay */
+}
+
+.service {
+    background: rgba(255, 255, 255, 0.0); /* Transparent background */
+    border-radius: 15px;
+    border: 2px solid #2e7d32;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+    max-width: 320px;
+    width: 100%;
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    position: relative; /* Ensure the card stays above the overlay */
+}
+
+.service:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+}
+
+.service h3 {
+    font-size: 1.8rem;
+    color: #2e7d32;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.service p {
+    font-size: 1.1rem;
+    color: white;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: #4CAF50;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: bold;
+    z-index: 2; /* Ensure the heading sits above the overlay */
+    position: relative; /* Ensure the heading stays above the overlay */
+}
+
+@media (max-width: 768px) {
+    .services-container {
+        grid-template-columns: 1fr; /* Single column layout on smaller screens */
+        gap: 20px;
+    }
+
+    .service h3 {
+        font-size: 1.6rem; /* Slightly smaller for mobile */
+    }
+}
+        .tour {
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+        }
+
+        /* Background image and section styling */
+/* Background image and section styling */
+#contact.cta {
+    background: url('https://i.ibb.co/74WJV0B/Photographic-Print-South-Africa-Western-Cape-Cape-Town-Aerial-View-of-Cape-Town-and-Table-Mountain-b.jpg') no-repeat center center/cover; /* Use a scenic South Africa image */
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+#contact.cta:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+}
+
+/* Content inside the section */
+.cta-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Heading and text styling */
+#contact h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+#contact p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* Contact information styling */
+.contact-info p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.contact-info a {
+    color: #F2C94C; /* Bright accent color */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #contact.cta {
+        padding: 80px 20px;
+    }
+    
+    #contact h2 {
+        font-size: 2rem;
+    }
+    
+    #contact p {
+        font-size: 1rem;
+    }
+    
+    .contact-info p {
+        font-size: 1rem;
+    }
+}
+
+        .cta {
+            text-align: center;
+            padding: 20px;
+            background: #f9f9f9;
+        }
+        .cta a {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+        form {
+            background: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        form input, form select, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        form button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        form button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">
+        <span class="business-name">Cape Rhino Tours</span>
+    </div>
+    <div class="burger" id="burger-icon">
+        <div class="bar bar1"></div>
+        <div class="bar bar2"></div>
+        <div class="bar bar3"></div>
+    </div>
+    <div class="nav-links" id="nav-links">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#tours" class="nav-link">Tours</a>
+        <a href="#expertise" class="nav-link">Expertise</a>
+        <a href="#booking" class="nav-link">Booking</a>
+        <a href="#contact" class="nav-link">Contact</a>
+    </div>
+</nav>
+
+    <header>
+        <h1>Cape Rhino Tours</h1>
+        <p>Unleash the Adventure of a Lifetime</p>
+    </header>
+    
+  <section id="about" class="section" style="background: #eaf7e3; color: #2e7d32; text-align: center; box-sizing: border-box;">
+    <div style=" margin: 0 auto;">
+        <h2 style="font-size: 2.8rem; font-weight: bold; margin-bottom: 20px; text-transform: uppercase;">About Cape Rhino Tours</h2>
+        <p style="font-size: 1.2rem; line-height: 1.8; margin: 0 auto 40px auto; max-width: 800px;">
+            Experience the wild beauty of South Africa with <strong>Cape Rhino Tours</strong>. We provide extraordinary adventures and immersive experiences that bring you closer to nature, culture, and unforgettable landscapes.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
+            <!-- Card 1 -->
+            <div style="padding: 20px; border-radius: 10px; border: 2px solid #2e7d32; background: #eaf7e3; transition: transform 0.3s ease; text-align: left;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 15px; display: flex; align-items: center;">
+                    <span style="font-size: 2rem; margin-right: 10px;">🌍</span> Meet Our Founder
+                </h3>
+                <p style="font-size: 1rem; line-height: 1.6;">
+                    <strong>Waleed Osman</strong>, a Cape Town native and wildlife enthusiast, turned his passion for South Africa’s beauty into a thriving business. Since 2001, Cape Rhino Tours has delivered unforgettable travel experiences with heart and expertise. Here is a list of our services:
+                </p>
+                <ul style="list-style-type: disc; margin: 10px 0 0 20px;">
+                  <li>Airport Transfers</li>
+                  <li>Winelands Tours</li>
+                  <li>City Tours</li>
+              </ul>
+            </div>
+
+            <!-- Card 3 -->
+            <div style="padding: 20px; border-radius: 10px; border: 2px solid #2e7d32; background: #eaf7e3; transition: transform 0.3s ease; text-align: left;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 15px; display: flex; align-items: center;">
+                    <span style="font-size: 2rem; margin-right: 10px;">🏞</span> About Cape Town
+                </h3>
+                <p style="font-size: 1rem; line-height: 1.6;">
+                    Discover Cape Town’s iconic Table Mountain, pristine beaches, and rich cultural heritage. From its vibrant urban life to natural wonders, this city offers something truly magical for every traveler.<br> Explore some of Cape Town's wonders:
+                </p>
+                <ul style="list-style-type: disc; margin: 10px 0 0 20px;">
+                    <li>Marvel at the Atlantic and Indian Oceans’ meeting point.</li>
+                    <li>Visit penguins at Boulders Beach.</li>
+                    <li>Explore Cape Town’s world-class landmarks and history.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="services" class="section">
+  <h2 style="text-align: center; font-size: 2.8rem; font-weight: bold; margin-bottom: 20px; text-transform: uppercase;  z-index: 2; ">Our Services</h2>
+  <div class="services-container">
+      <div class="service">
+          <h3>Airport Transfers</h3>
+          <p>Reliable and efficient transportation from Cape Town International Airport to your accommodation. Our drivers will meet you at the arrivals terminal and ensure a stress-free journey to your destination.</p>
+      </div>
+      <div class="service">
+          <h3>Winelands Tours</h3>
+          <p>Explore the scenic Cape Winelands with our shuttle services, visiting top vineyards and wine estates.</p>
+      </div>
+      <div class="service">
+          <h3>City Tours</h3>
+          <p>Discover the beauty of Cape Town with our shuttle services, visiting popular attractions such as Table Mountain, Cape of Good Hope, and Boulders Beach. Our knowledgeable drivers will share interesting facts and insights about the city's landmarks.</p>
+      </div>
+  </div>
+</section>
+
+<section id="tours" class="section" style="background: #eaf7e3; padding: 40px 20px; text-align: center;">
+    <h2 style="font-size: 2.8rem; color: #4CAF50; font-weight: bold; text-transform: uppercase; margin-bottom: 30px;">Our Tours</h2>
+
+    <div class="tours-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 40px;">
+        <!-- Tour 1: Tour Options -->
+        <div class="tour" style="position: relative; background: url('https://i.ibb.co/SBJDtd9/Cape-Town-South-Africa.jpg') no-repeat center center/cover; padding: 30px; border-radius: 10px; box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); border-radius: 10px;"></div>
+            <h3 style="font-size: 2rem; color: white; font-weight: bold; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); position: relative; z-index: 1;">Tour Options</h3>
+            <p style="font-size: 1.1rem; color: white; line-height: 1.6; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); position: relative; z-index: 1;">Scenic Drives<br>Safari Adventures<br>Dine<br>Outdoor Escapades</p>
+        </div>
+
+        <!-- Tour 2: Cape Peninsula Tour -->
+        <div class="tour" style="position: relative; background: url('https://i.ibb.co/K71dBBr/Trip101.jpg') no-repeat center center/cover; padding: 30px; border-radius: 10px; box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); border-radius: 10px;"></div>
+            <h3 style="font-size: 2rem; color: white; font-weight: bold; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); position: relative; z-index: 1;">Cape Peninsula Tour</h3>
+            <p style="font-size: 1.1rem; color: white; line-height: 1.6; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); position: relative; z-index: 1;">Explore the Cape of Good Hope, Boulders Beach, and more on this scenic adventure.<br><br></p>
+            <a href="#booking" style="display: inline-block; background: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; position: relative; z-index: 1;">Book Now</a>
+        </div>
+
+        <!-- Tour 3: Cape Winelands Tour -->
+        <div class="tour" style="position: relative; background: url('https://i.ibb.co/Byg5BYK/Franschoek-Cape-town.jpg') no-repeat center center/cover; padding: 30px; border-radius: 10px; box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); border-radius: 10px;"></div>
+            <h3 style="font-size: 2rem; color: white; font-weight: bold; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); position: relative; z-index: 1;">Cape Winelands Tour</h3>
+            <p style="font-size: 1.1rem; color: white; line-height: 1.6; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); position: relative; z-index: 1;">Discover the beauty of Stellenbosch, Franschhoek, and the rolling hills of the Cape Winelands.</p>
+            <a href="#booking" style="display: inline-block; background: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; position: relative; z-index: 1;">Book Now</a>
+        </div>
+
+        <!-- Tour 4: Aquila Private Game Reserve -->
+        <div class="tour" style="position: relative; background: url('https://i.ibb.co/NjMPXyH/Aquila-Private-Game-Reserve-Spa.jpg') no-repeat center center/cover; padding: 30px; border-radius: 10px; box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); border-radius: 10px;"></div>
+            <h3 style="font-size: 2rem; color: white; font-weight: bold; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); position: relative; z-index: 1;">Aquila Private<br> Game Reserve<br><br></h3>
+            <p style="font-size: 1.1rem; color: white; line-height: 1.6; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); position: relative; z-index: 1;">Embark on a thrilling safari adventure to see the Big Five and more.<br><br></p>
+            <a href="#booking" style="display: inline-block; background: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; position: relative; z-index: 1;">Book Now</a>
+        </div>
+
+        <!-- Tour 5: City of Cape Town and Table Mountain -->
+        <div class="tour" style="position: relative; background: url('https://i.ibb.co/TrT9mnN/Table-Mountain-mountain-South-Africa.jpg') no-repeat center center/cover; padding: 30px; border-radius: 10px; box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); border-radius: 10px;"></div>
+            <h3 style="font-size: 2rem; color: white; font-weight: bold; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); position: relative; z-index: 1;">City of Cape Town and Table Mountain<br><br></h3>
+            <p style="font-size: 1.1rem; color: white; line-height: 1.6; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); position: relative; z-index: 1;">Experience the vibrant culture and stunning landscapes of Cape Town, including Table Mountain.</p>
+            <a href="#booking" style="display: inline-block; background: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; position: relative; z-index: 1;">Book Now</a>
+        </div>
+
+        <!-- Tour 6: Robben Island and Kirstenbosch Botanical Gardens -->
+        <div class="tour" style="position: relative; background: url('https://i.ibb.co/ZJXvYyr/Robben-Island-Cape-Town-South-Africa.jpg') no-repeat center center/cover; padding: 30px; border-radius: 10px; box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); border-radius: 10px;"></div>
+            <h3 style="font-size: 2rem; color: white; font-weight: bold; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); position: relative; z-index: 1;">Robben Island and Kirstenbosch Botanical Gardens</h3>
+            <p style="font-size: 1.1rem; color: white; line-height: 1.6; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); position: relative; z-index: 1;">Delve into history and nature with a visit to Robben Island and Kirstenbosch Gardens.<br><br></p>
+            <a href="#booking" style="display: inline-block; background: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; position: relative; z-index: 1;">Book Now</a>
+        </div>
+    </div>
+</section>
+
+<section id="expertise" class="section" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.ibb.co/VMzKWHj/download-2.jpg'); background-size: cover; background-position: center; color: #fff; text-align: center; padding: 60px 20px;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <!-- Section Heading -->
+    <h2 style="font-size: 2.8rem; color: #4CAF50; font-weight: bold; text-transform: uppercase; margin-bottom: 30px;">Why Choose Cape Rhino Tours?</h2>
+
+    <!-- Section Summary Text -->
+    <p style="font-size: 1.3rem; line-height: 1.8; color: #ddd; margin-bottom: 40px; max-width: 850px; margin-left: auto; margin-right: auto;">
+      With over a decade of experience in the tourism industry, Cape Rhino has curated a team of expert guides and local experts who share their passion for delivering exceptional tours. Cape Rhino Tours offers a range of exciting packages that cater to diverse interests and fitness levels, from relaxing scenic drives to adrenaline-pumping safaris.
+    </p>
+
+    <!-- Cards Container (Flexbox for One Row) -->
+    <div style="display: flex; justify-content: space-between; gap: 30px; flex-wrap: wrap;">
+
+      <!-- Card 1: Expertise -->
+      <div style="background-color: rgba(255, 255, 255, 0.0); border: 2px solid #2e7d32; border-radius: 10px; padding: 30px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); backdrop-filter: blur(8px); flex: 1 1 30%;">
+        <h3 style="font-size: 2rem; margin-bottom: 20px; color: #2e7d32;">Expertise & Passion</h3>
+        <p style="font-size: 1.1rem; color: white; margin-bottom: 15px;">Our team of expert guides and local specialists share a deep passion for creating unforgettable travel experiences. With years of experience, we know how to deliver tours that exceed expectations.</p>
+      </div>
+
+      <!-- Card 2: Exclusive Experiences -->
+      <div style="background-color: rgba(255, 255, 255, 0.0); border: 2px solid #2e7d32; border-radius: 10px; padding: 30px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); backdrop-filter: blur(8px); flex: 1 1 30%;">
+        <h3 style="font-size: 2rem; margin-bottom: 20px; color: #2e7d32;">Exclusive Experiences</h3>
+        <p style="font-size: 1.1rem; color: white; margin-bottom: 15px;">What sets us apart is our commitment to offering off-the-beaten-track experiences. Our tours are designed to take you to places most tourists never see, providing you with a true sense of adventure.</p>
+      </div>
+
+      <!-- Card 3: Why Choose Us -->
+      <div style="background-color: rgba(255, 255, 255, 0.0); border: 2px solid #2e7d32; border-radius: 10px; padding: 30px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); backdrop-filter: blur(8px); flex: 1 1 30%;">
+        <h3 style="font-size: 2rem; margin-bottom: 20px; color: #2e7d32;">Why Choose Us?</h3>
+        <ul style="font-size: 1.1rem; color: white; padding-left: 20px; line-height: 1.8;">
+          <li><strong>Convenience:</strong> Flexible schedules to meet your needs.</li>
+          <li><strong>Safety:</strong> Well-maintained vehicles and knowledgeable drivers.</li>
+          <li><strong>Affordability:</strong> Quality service at competitive prices.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Responsive Styles for Small Screens -->
+  <style>
+    @media (max-width: 768px) {
+      #expertise h2 {
+        font-size: 2rem;
+      }
+      #expertise p {
+        font-size: 1rem;
+      }
+      #expertise .section .section-summary-text {
+        font-size: 1rem;
+      }
+      #expertise .section .card {
+        width: 100% !important;
+        margin-bottom: 20px;
+        padding: 20px;
+      }
+      #expertise .section .cards-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</section>
+
+<section id="booking" class="section" style="background: #eaf7e3; padding: 60px 20px;">
+  <h2 style="font-size: 3rem; color: #4CAF50; font-weight: bold; text-align: center; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px;">
+      Book Your Adventure
+  </h2>
+
+  <div style="display: flex; flex-direction: row; justify-content: center; align-items: flex-start; gap: 40px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap;">
+      <!-- Booking Form -->
+      <form style="flex: 1; min-width: 320px; max-width: 48%; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);">
+          <h3 style="font-size: 2rem; color: #2e7d32; margin-bottom: 25px; text-align: center; text-transform: uppercase;">
+              Plan Your Trip
+          </h3>
+          <label for="name" style="font-size: 1rem; color: #555; margin-bottom: 8px; display: block;">Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem;">
+
+          <label for="email" style="font-size: 1rem; color: #555; margin-bottom: 8px; display: block;">Email</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem;">
+
+          <label for="date" style="font-size: 1rem; color: #555; margin-bottom: 8px; display: block;">Preferred Date</label>
+          <input type="date" id="date" name="date" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem;">
+
+          <label for="tour" style="font-size: 1rem; color: #555; margin-bottom: 8px; display: block;">Select Tour</label>
+          <select id="tour" name="tour" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem;">
+              <option value="">Choose a tour...</option>
+              <option value="cape-peninsula">Cape Peninsula Tour</option>
+              <option value="winelands">Cape Winelands Tour</option>
+              <option value="aquila-safari">Aquila Safari Adventure</option>
+          </select>
+
+          <label for="message" style="font-size: 1rem; color: #555; margin-bottom: 8px; display: block;">Additional Notes</label>
+          <textarea id="message" name="message" rows="4" placeholder="Let us know any special requests..." style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem;"></textarea>
+
+          <button type="submit" style="display: block; width: 100%; background: #4CAF50; color: white; padding: 15px; border: none; border-radius: 8px; font-size: 1.2rem; cursor: pointer; margin-top: 15px; transition: background 0.3s;">
+              Submit Booking
+          </button>
+      </form>
+
+      <!-- Booking Info -->
+      <div style="flex: 1; min-width: 320px; max-width: 48%; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); margin-top: 1.7%;">
+          <h3 style="font-size: 2rem; color: #2e7d32; margin-bottom: 25px; text-align: center; text-transform: uppercase;">
+              Why Book With Us?
+          </h3>
+          <ul style="list-style-type: none; padding: 0; font-size: 1.2rem; line-height: 1.8; color: #555;">
+              <li style="margin-bottom: 20px; display: flex; align-items: center;">
+                  <span style="font-size: 1.8rem; color: #4CAF50; margin-right: 15px;">✔</span>
+                  Experienced and knowledgeable guides.
+              </li>
+              <li style="margin-bottom: 20px; display: flex; align-items: center;">
+                  <span style="font-size: 1.8rem; color: #4CAF50; margin-right: 15px;">✔</span>
+                  Comfortable and reliable transportation.
+              </li>
+              <li style="margin-bottom: 20px; display: flex; align-items: center;">
+                  <span style="font-size: 1.8rem; color: #4CAF50; margin-right: 15px;">✔</span>
+                  Flexible and customizable itineraries.
+              </li>
+              <li style="margin-bottom: 20px; display: flex; align-items: center;">
+                  <span style="font-size: 1.8rem; color: #4CAF50; margin-right: 15px;">✔</span>
+                  Safe and secure booking process.
+              </li>
+          </ul>
+          <!-- Added Image -->
+          <div style="text-align: center; margin-top: 20px;">
+            <img src="https://i.ibb.co/smZPP8y/Bo-Kaap-Cape-Town-Photo-Cape-Town-Photo-Cape-Town-Wall-Art-South-Africa-Fine-Art-Bo-Kaap-Photo-Table.jpg" alt="Adventure Preview" style="height: auto; width: 100%; max-width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+          </div>
+      </div>
+  </div>
+</section>
+
+<section id="contact" class="cta">
+  <div class="cta-content">
+      <h2>Join the Adventure</h2>
+      <p>Ready to explore the wild beauty of South Africa? Get in touch with us to book your tour or shuttle service!</p>
+      <div class="contact-info">
+          <p><strong>Email:</strong> <a href="mailto:info@caperhinotours.com">info@caperhinotours.com</a></p>
+          <p><strong>Phone:</strong> <a href="tel:+1234567890">+27 123 456 7890</a></p>
+      </div>
+  </div>
+</section>
+
+    <footer>
+        <p>&copy; 2025 Cape Rhino Tours. All rights reserved.</p>
+    </footer>
+<script>
+const burgerIcon = document.getElementById('burger-icon');
+const navLinks = document.getElementById('nav-links');
+const navLinkItems = document.querySelectorAll('.nav-link');
+
+burgerIcon.addEventListener('click', () => {
+    navLinks.classList.toggle('open'); // Toggle visibility of nav links
+    burgerIcon.classList.toggle('open'); // Toggle burger icon animation
+});
+
+// Close the menu when a link is clicked
+navLinkItems.forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('open'); // Close menu
+        burgerIcon.classList.remove('open'); // Reset burger icon animation
+    });
+});
+</script>
+
+</body>
+</html>
